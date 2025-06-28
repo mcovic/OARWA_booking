@@ -1,0 +1,27 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ],
+  "compilerOptions": {
+    "lib": ["es6", "dom"],
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./src/",
+    "paths": {
+      "@assets/*": ["assets/*"],
+      "@pages/*": ["pages/*"],
+      "@components/*": ["components/*"],
+      "@routes/*": ["routes/*"],
+      "@sections/*": ["sections/*"],
+      "@utils/*": ["utils/*"],
+      "@hooks/*": ["hooks/*"],
+      "@layouts/*": ["layouts/*"],
+      "@theme": ["theme/*"],
+    },
+  },
+  "exclude": ["node_modules", "build"]
+}
