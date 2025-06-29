@@ -1,17 +1,13 @@
-import dotenv from 'dotenv';
-import path from 'path';
+import { ENV_CONFIG } from '@config/default';
 
 // --------------------------------------------------------------
 
-dotenv.config({ path: path.resolve(__dirname, '../../.env') });
-
 const allowedOrigins = [
-    process.env.API_URL,
-    process.env.CLIENT_URL,
+    ENV_CONFIG.API_URL,
+    ENV_CONFIG.CLIENT_URL,
 ];
 
 const corsOptions = {
-    // origin: process.env.API_URL,
     origin: function (origin: string, callback: Function) {
         if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
             callback(null, true)

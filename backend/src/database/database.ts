@@ -1,8 +1,9 @@
 import mongoose from 'mongoose';
+import { ENV_CONFIG } from '@config/default';
 
 // --------------------------------------------------------------
 
-mongoose.connect(process.env.DB_URI || 'mongodb://localhost:27017/oarwa_booking');
+mongoose.connect(ENV_CONFIG.DB_URI || 'mongodb://localhost:27017/oarwa_booking');
 
 const db = mongoose.connection;
 

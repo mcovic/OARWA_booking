@@ -109,6 +109,21 @@
     /* Completeness */
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
     "skipLibCheck": true,                                 /* Skip type checking all .d.ts files. */
-    "outDir": "./dist"
-  }
+    "baseUrl": "./src/",
+    "outDir": "./dist",
+    "paths": {
+      "@config/*": ["config/*"],
+      "@database/*": ["database/*"],
+      "@errors/*": ["errors/*"],
+      "@middlewares/*": ["middlewares/*"],
+      "@routes/*": ["routes/*"],
+      "@shared/*": ["../../shared/*"],
+    },
+  },
+  "ts-node": { // Configuration for ts-node
+    "transpileOnly": true, // Speeds up development
+    "require": ["tsconfig-paths/register"] // Enable path aliases in ts-node
+  },
+  "include": ["src/**/*", "../../shared/**/*"], // Include all TypeScript files in `src` and shared directory
+  "exclude": ["node_modules"] // Exclude `node_modules` from compilation
 }
