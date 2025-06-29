@@ -1,17 +1,14 @@
 import express, { Express } from 'express';
-import dotenv from 'dotenv';
-import path from 'path';
+import { ENV_CONFIG } from '@config/default';
 import corsOptions from './cors-options';
 import { errorHandler } from './middleware/error-handler';
-import { MainRouter } from './routes/main-router';
+import { MainRouter } from '@routes/main-router';
 import cookieParser from 'cookie-parser';
 const cors = require('cors');
 
 // --------------------------------------------------------------
 
-dotenv.config({ path: path.resolve(__dirname, '../../.env') });
-
-const PORT = process.env.API_PORT || 3000;
+const PORT = ENV_CONFIG.API_PORT || 3000;
 const app: Express = express();
 const router = new MainRouter();
 
