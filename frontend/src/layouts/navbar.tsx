@@ -2,7 +2,7 @@ import { Icon } from '@iconify/react';
 import {
     Avatar,
     Box,
-    Drawer, IconButton,
+    Drawer, IconButton, Link,
     List,
     ListItem,
     ListItemButton,
@@ -30,12 +30,14 @@ export default function Navbar() {
                 alignItems: 'center',
             }}
         >
-            <Avatar
-                alt={'hair salon logo'}
-                src={LogoImg}
-                variant={'square'}
-                sx={{ width: { xs: 110, sm: 150 }, height: { xs: 120, sm: 120 } }}
-            />
+            <Link href={paths.home.root}>
+                <Avatar
+                    alt={'hair salon logo'}
+                    src={LogoImg}
+                    variant={'square'}
+                    sx={{ width: { xs: 110, sm: 150 }, height: { xs: 120, sm: 120 } }}
+                />
+            </Link>
 
             <IconButton onClick={() => setOpenMenu(true)} sx={{ mt: -2 }}>
                 <Icon icon={'mingcute:menu-fill'} />
