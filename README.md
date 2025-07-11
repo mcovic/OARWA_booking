@@ -3,6 +3,10 @@
 ## Description
 "Hair Salon Booking System" is a web application that allows customers to book appointments at a hair salon. Customers can view available appointments, book a slot, and manage their bookings. Salon owners can manage appointments, view customer details, and update booking statuses.
 
+Kratke napomene prije finalne izrade:
+- instalacija u root projekta s npm run install-all
+- pokretanje u root projekta s npm run start
+
 [//]: # (## Installation)
 
 [//]: # ()

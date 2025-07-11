@@ -10,19 +10,7 @@
     "noImplicitThis": true,
     "strictNullChecks": true,
     "allowSyntheticDefaultImports": true,
-    "baseUrl": "./src/",
     "outDir": "./dist",
-    "paths": {
-      "@assets/*": ["assets/*"],
-      "@pages/*": ["pages/*"],
-      "@components/*": ["components/*"],
-      "@routes/*": ["routes/*"],
-      "@sections/*": ["sections/*"],
-      "@utils/*": ["utils/*"],
-      "@hooks/*": ["hooks/*"],
-      "@layouts/*": ["layouts/*"],
-      "@theme": ["theme/*"]
-    }
   },
   "exclude": ["node_modules", "build"]
 }
