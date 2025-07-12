@@ -6,6 +6,7 @@
 Kratke napomene prije finalne izrade:
 - instalacija u root projekta s npm run install-all
 - pokretanje u root projekta s npm run start
+- podaci za admin seedanog korisnika
 
 [//]: # (## Installation)
 

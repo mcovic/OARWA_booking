@@ -1,9 +1,11 @@
 import { Router } from 'express';
+import { AuthController } from '../controllers/auth-controller';
 
 // --------------------------------------------------------------
 
 export class MainRouter {
-    // controllers // TODO import controllers as needed
+    // controllers
+    private readonly authController = new AuthController();
 
     public readonly routes;
 
@@ -12,5 +14,7 @@ export class MainRouter {
         this.defineRoutes();
     }
 
-    private defineRoutes() {} // TODO define routes here
+    private defineRoutes() {
+        this.routes.use(this.authController.authRouter);
+    }
 }

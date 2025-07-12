@@ -1,16 +1,30 @@
 import {
     Page403,
     Page404,
-    LandingPage,
+    LandingPage, LoginPage, RegisterPage,
 } from '@routes/elements.tsx';
 import { Navigate, useRoutes } from 'react-router';
-import { CompactLayout, MainLayout } from './layouts';
+import { AuthLayout, CompactLayout, MainLayout } from './layouts';
 
 // ----------------------------------------------------------------------
 
 export default function Router() {
 
     return useRoutes([
+        {
+            path: 'auth',
+            element: <AuthLayout />,
+            children: [
+                {
+                    path: 'login',
+                    element: <LoginPage />,
+                },
+                {
+                    path: 'register',
+                    element: <RegisterPage />,
+                }
+            ],
+        },
         {
             path: '/',
             element: <MainLayout />,
