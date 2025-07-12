@@ -1,7 +1,7 @@
 import {
     Page403,
     Page404,
-    LandingPage, LoginPage,
+    LandingPage, LoginPage, RegisterPage,
 } from '@routes/elements.tsx';
 import { Navigate, useRoutes } from 'react-router';
 import { AuthLayout, CompactLayout, MainLayout } from './layouts';
@@ -19,6 +19,10 @@ export default function Router() {
                     path: 'login',
                     element: <LoginPage />,
                 },
+                {
+                    path: 'register',
+                    element: <RegisterPage />,
+                }
             ],
         },
         {

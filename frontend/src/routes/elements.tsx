@@ -15,6 +15,9 @@ const Loadable = (Component: ElementType) => (props: any) => (
 export const LoginPage = Loadable(
     lazy(() => import('@pages/auth/login-page.tsx')),
 );
+export const RegisterPage = Loadable(
+    lazy(() => import('@pages/auth/register-page.tsx')),
+);
 
 // MAIN APP
 export const LandingPage = Loadable(
