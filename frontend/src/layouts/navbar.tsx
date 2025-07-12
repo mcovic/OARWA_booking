@@ -1,7 +1,9 @@
+import AccountDisplay from '@components/user/account-display.tsx';
+import { useAuthContext } from '@hooks/use-auth-context.ts';
 import { Icon } from '@iconify/react';
 import {
     Avatar,
-    Box,
+    Box, Button,
     Drawer, IconButton, Link,
     List,
     ListItem,
@@ -76,6 +78,8 @@ const NavbarList = ({
 
     const navigate = useNavigate();
 
+    const { isAuthenticated } = useAuthContext();
+
     const { pathname } = useLocation();
 
     const menuOptions: MenuOptionParent[] = [
@@ -113,9 +117,24 @@ const NavbarList = ({
                     </ListItem>
                 </Fragment>
             ))}
-            {/* <div className={c.signInWrapper}> */}
-            {/*     <button className={`button ${c.menuBtn}`} onClick={() => (navigate(paths.auth.login))}>Sign In</button> */}
-            {/* </div> */}
+            {
+                !isAuthenticated
+                    ? <Box sx={{
+                        position: 'fixed',
+                        bottom: 20,
+                        right: 15,
+                        width: 220,
+                    }}>
+                        <Button
+                            fullWidth
+                            variant={'contained'}
+                            onClick={() => (navigate(paths.auth.login))}
+                        >
+                            Prijava
+                        </Button>
+                    </Box>
+                    : <AccountDisplay handleNavigate={handleNavigate}/>
+            }
         </List>
     );
 
