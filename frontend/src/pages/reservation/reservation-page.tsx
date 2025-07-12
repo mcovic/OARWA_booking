@@ -1,4 +1,5 @@
 import { Box } from '@mui/material';
+import Reservation from '@sections/reservation/reservation.tsx';
 
 // ----------------------------------------------------------------------
 
@@ -11,7 +12,7 @@ export default function ReservationPage() {
             <Box sx={{
                 height: 1,
             }}>
-
+                <Reservation />
             </Box>
         </>
     );
