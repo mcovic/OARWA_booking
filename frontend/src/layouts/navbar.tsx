@@ -102,7 +102,7 @@ const NavbarList = ({
     };
 
     return (
-        <List component={'nav'} disablePadding>
+        <List component={'nav'} disablePadding sx={{ mt: 1 }}>
             {menuOptions.map((item, parentIndex) => (
                 <Fragment key={parentIndex}>
                     <ListItem
@@ -112,7 +112,7 @@ const NavbarList = ({
                         }}
                     >
                         <ListItemButton onClick={() => handleNavigate(item.path)}>
-                            <ListItemText primary={item.text}/>
+                            <ListItemText primary={item.text} sx={{ textAlign: 'center' }} />
                         </ListItemButton>
                     </ListItem>
                 </Fragment>
@@ -133,7 +133,14 @@ const NavbarList = ({
                             Prijava
                         </Button>
                     </Box>
-                    : <AccountDisplay handleNavigate={handleNavigate}/>
+                    : <Box sx={{
+                        position: 'fixed',
+                        bottom: 20,
+                        right: 5,
+                        width: 240,
+                    }}>
+                        <AccountDisplay handleNavigate={handleNavigate}/>
+                    </Box>
             }
         </List>
     );

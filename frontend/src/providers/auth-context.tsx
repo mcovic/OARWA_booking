@@ -6,8 +6,8 @@ import type { UserLoginDataDTO, UserRegisterDataDTO } from '../../../shared/DTO/
 
 type AuthenticatedUser = {
     id: number;
-    name: string;
-    surname: string;
+    first_name: string;
+    last_name: string;
     role_id: string;
     username: string;
     email: string;

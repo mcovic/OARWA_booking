@@ -34,7 +34,7 @@ export class AuthController {
             const { accessToken, refreshToken } = await this.authService.login(authData);
 
             res.cookie('jwt', refreshToken, { httpOnly: true, maxAge: 24 * 60 * 60 * 1000 }); // maxAge is in milliseconds, so it is 1 day
-            res.status(201).json({ message: 'User created', accessToken, user });
+            res.status(201).json({ message: 'Korisnik uspješno kreiran', accessToken, user });
         } catch (error) {
             next(error);
         }

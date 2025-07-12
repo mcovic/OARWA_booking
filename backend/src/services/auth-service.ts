@@ -14,7 +14,7 @@ export class AuthService {
     public async register(userData: UserDto) {
         const usernameExists = !!(await User.findOne({ username: userData.username }));
         if (usernameExists)
-            throw new BadRequestError('Username already exists');
+            throw new BadRequestError('Korisničko ime već postoji');
 
         const hashPassword = await bcrypt.hash(userData.password, 10);
         const userRole = await Role.findOne({ id: RoleEnum.USER });
@@ -26,7 +26,7 @@ export class AuthService {
         await user.save();
 
         if (!user) {
-            throw new ValidationError('User data is invalid');
+            throw new ValidationError('Neispravni podaci za registraciju');
         }
 
         return user;
@@ -36,12 +36,12 @@ export class AuthService {
         const foundUser = await User.findOne({ username: loginCredentials.username });
 
         if (!foundUser) {
-            throw new NotFoundError('User not found');
+            throw new NotFoundError('Neispravno korisničko ime ili lozinka');
         }
 
         const passwordMatch = await bcrypt.compare(loginCredentials.password, foundUser.password);
         if (!passwordMatch) {
-            throw new UnauthorizedError('Invalid password');
+            throw new UnauthorizedError('Neispravno korisničko ime ili lozinka');
         }
 
         const accessToken = jwt.sign({
@@ -61,7 +61,7 @@ export class AuthService {
         const foundUser = await User.findById(userId);
 
         if (!foundUser) {
-            throw new UnauthorizedError('Not authenticated');
+            throw new UnauthorizedError('Korisnik nije prijavljen');
         }
 
         return foundUser;

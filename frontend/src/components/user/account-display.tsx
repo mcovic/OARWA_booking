@@ -57,7 +57,7 @@ export default function AccountDisplay({
                     <img src={EmptyProfileImg} alt='profile' height={'40px'} width={'40px'} />
                 </Avatar>
                 <Typography variant='subtitle2' sx={{ alignSelf: 'center', ml: 1.25 }}>
-                    {`${user?.name} ${user?.surname}`}
+                    {`${user?.first_name} ${user?.last_name}`}
                 </Typography>
             </AccordionSummary>
             <AccordionDetails>
