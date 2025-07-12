@@ -1,12 +1,10 @@
-import { RoleEnum } from '@shared/enums/RoleEnum';
 import { model, Schema } from 'mongoose';
 
 // --------------------------------------------------------------
 
 const roleSchema = new Schema({
-    name: {
-        type: String,
-        enum: Object.values(RoleEnum),
+    id: {
+        type: Number,
         required: true,
         unique: true,
     },
