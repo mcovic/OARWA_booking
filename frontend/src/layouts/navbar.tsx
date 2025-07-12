@@ -88,6 +88,11 @@ const NavbarList = ({
             text: 'Početna',
             path: paths.home.root,
         },
+        {
+            id: 2,
+            text: 'Rezervacija',
+            path: paths.reservation.root,
+        },
     ];
 
     const handleNavigate = (path: string) => {

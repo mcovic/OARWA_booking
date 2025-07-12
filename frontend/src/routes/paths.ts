@@ -13,4 +13,7 @@ export const paths = {
         login: `${Roots.AUTH}/login`,
         register: `${Roots.AUTH}/register`,
     },
+    reservation: {
+        root: '/reservation',
+    },
 };

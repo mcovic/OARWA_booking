@@ -1,19 +1,19 @@
 import { Box } from '@mui/material';
-import Landing from '@sections/landing/landing.tsx';
 
 // ----------------------------------------------------------------------
 
+export default function ReservationPage() {
 
-export default function LandingPage(){
-    return(
+    return (
         <>
-            <title>Početna</title>
+            <title>Rezervacija</title>
 
             <Box sx={{
                 height: 1,
             }}>
-                <Landing />
+
             </Box>
         </>
     );
+
 }
