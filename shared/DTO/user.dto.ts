@@ -23,9 +23,3 @@ export type UserLoginDataDTO = {
     password: string;
 }
 
-export type UserProfileInfoDTO = {
-    id: number;
-    first_name: string;
-    last_name: string;
-    username: string;
-}
