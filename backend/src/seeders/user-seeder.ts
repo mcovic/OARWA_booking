@@ -22,8 +22,8 @@ const seedUsers = async () => {
         }
 
         // Passwords should be hashed
-        const hashedAdminPassword = await bcrypt.hash('admin123', 10);
-        const hashedUserPassword = await bcrypt.hash('user123', 10);
+        const hashedAdminPassword = await bcrypt.hash('admin1234', 10);
+        const hashedUserPassword = await bcrypt.hash('user1234', 10);
 
         const usersToInsert = [
             {

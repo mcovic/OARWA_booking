@@ -1,8 +1,12 @@
 import { Box, Button, Stack, Typography } from '@mui/material';
+import { paths } from '@routes/paths.ts';
+import { useNavigate } from 'react-router';
 
 // ----------------------------------------------------------------------
 
 export default function Landing() {
+
+    const navigate = useNavigate();
 
     return (
         <Box
@@ -24,13 +28,14 @@ export default function Landing() {
                     size={'large'}
                     variant={'outlined'}
                     color={'primary'}
+                    onClick={() => navigate(paths.reservation.root)}
                     sx={{
                         width: 'max-content',
                         alignSelf: 'center',
                         px: 10,
                         mt: '5rem !important',
                     }}
-                > {/* TODO navigate na narucivanje */}
+                >
                     Naruči termin!
                 </Button>
             </Stack>
