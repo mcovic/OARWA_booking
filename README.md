@@ -15,10 +15,8 @@
    - Create a new `.env` file by copying the contents of the `.env.example` file, and a new `.env.local` file by copying the contents of the `.env.local.example` file.
    - Follow the instructions inside example files to fill the fields
 
-
 2. **Database Setup:**
    - Open MongoDB Compass and create a new connection following the `.env` configuration.
-
 
 3. **Install Dependencies:**
    - Navigate to the root directory and install starting root dependencies:
@@ -27,9 +25,8 @@
      ```
    - Stay in the root directory and install all of the rest (frontend and backend) dependencies:
      ```bash
-        npm run install-all
+     npm run install-all
      ```
-
 
 4. **Run the Application:**
     - Start the development server:
