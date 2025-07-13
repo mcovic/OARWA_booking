@@ -1,4 +1,5 @@
 import { ReservationDto } from '@shared/DTO/reservation.dto';
+import { RoleEnum } from '@shared/enums/RoleEnum';
 import { NextFunction, Router, Request, Response } from 'express';
 import Reservation from '../models/Reservation';
 import { adminMiddleware } from '@middleware/admin-middleware';
@@ -15,11 +16,12 @@ export class ReservationController {
         this.reservationRouter.get('/dates', this.getReservationDates.bind(this));
         this.reservationRouter.get('/me', this.getMyReservations.bind(this));
         this.reservationRouter.post('/', this.createReservation.bind(this));
+        this.reservationRouter.delete('/:id', this.deleteReservation.bind(this));
     }
 
     private async getReservations(_: Request, res: Response, next: NextFunction) {
         try {
-            const reservations = await Reservation.find();
+            const reservations = await Reservation.find().populate('user_id');
             res.status(200).json(reservations);
         } catch (error) {
             next(error);
@@ -63,6 +65,31 @@ export class ReservationController {
             await reservation.save();
 
             res.status(201).json({ message: 'Rezervacija uspješno kreirana', reservation });
+        } catch (error) {
+            next(error);
+        }
+    }
+
+    private async deleteReservation(req: Request, res: Response, next: NextFunction) {
+        try {
+            const userId = req.user?.id;
+            const isAdmin = req.user?.role_id === RoleEnum.ADMIN;
+            const reservationId = req.params.id;
+
+            const reservation = await Reservation.findById(reservationId);
+
+            if (!reservation) {
+                return res.status(404).json({ message: 'Rezervacija nije pronađena' });
+            }
+
+            // If not admin, check if user owns the reservation
+            if (!isAdmin && reservation.user_id.toString() !== userId) {
+                return res.status(403).json({ message: 'Nemate dozvolu za brisanje ove rezervacije' });
+            }
+
+            await Reservation.findByIdAndDelete(reservationId);
+
+            res.status(204).send();
         } catch (error) {
             next(error);
         }

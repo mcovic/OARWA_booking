@@ -1,5 +1,6 @@
 import React, { createContext, useCallback, useEffect, useMemo, useReducer } from 'react';
 import api, { endpoints } from '@utils/axios.ts';
+import type { RoleDto } from '../../../shared/DTO/role.dto.ts';
 import type { UserLoginDataDTO, UserRegisterDataDTO } from '../../../shared/DTO/user.dto.ts';
 
 // ----------------------------------------------------------------
@@ -8,7 +9,7 @@ type AuthenticatedUser = {
     id: number;
     first_name: string;
     last_name: string;
-    role_id: string;
+    role_id: RoleDto;
     username: string;
     email: string;
     accessToken: string;

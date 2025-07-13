@@ -61,6 +61,7 @@ export const endpoints = {
     },
     reservations: {
         all: '/api/reservations',
+        single: (id: string) => `/api/reservations/${id}`,
         reservationDates: '/api/reservations/dates',
         myReservations: '/api/reservations/me',
     },

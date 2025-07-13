@@ -93,6 +93,13 @@ const NavbarList = ({
             text: 'Rezervacija',
             path: paths.reservation.root,
         },
+        ...(isAuthenticated ? [
+            {
+                id: 3,
+                text: 'Popis rezervacija',
+                path: paths.reservation.list,
+            },
+        ] : []),
     ];
 
     const handleNavigate = (path: string) => {

@@ -1,7 +1,7 @@
 import {
     Page403,
     Page404,
-    LandingPage, LoginPage, RegisterPage, ReservationPage,
+    LandingPage, LoginPage, RegisterPage, ReservationPage, ReservationListPage,
 } from '@routes/elements.tsx';
 import { Navigate, useRoutes } from 'react-router';
 import { AuthLayout, CompactLayout, MainLayout } from './layouts';
@@ -34,8 +34,12 @@ export default function Router() {
                     index: true,
                 },
                 {
-                    path: 'reservation',
+                    path: 'reservations',
                     element: <ReservationPage />,
+                },
+                {
+                    path: 'reservations/list',
+                    element: <ReservationListPage />,
                 },
             ],
         },
