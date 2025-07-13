@@ -78,7 +78,7 @@ const NavbarList = ({
 
     const navigate = useNavigate();
 
-    const { isAuthenticated, user } = useAuthContext();
+    const { isAuthenticated } = useAuthContext();
 
     const { pathname } = useLocation();
 
@@ -93,6 +93,13 @@ const NavbarList = ({
             text: 'Rezervacija',
             path: paths.reservation.root,
         },
+        ...(isAuthenticated ? [
+            {
+                id: 3,
+                text: 'Popis rezervacija',
+                path: paths.reservation.list,
+            },
+        ] : []),
     ];
 
     const handleNavigate = (path: string) => {

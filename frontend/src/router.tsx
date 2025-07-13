@@ -34,7 +34,7 @@ export default function Router() {
                     index: true,
                 },
                 {
-                    path: 'reservation',
+                    path: 'reservations',
                     element: <ReservationPage />,
                 },
             ],
