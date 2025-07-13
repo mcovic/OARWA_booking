@@ -7,7 +7,7 @@
 
 ### Prerequisites
 - Node.js
-- MongoDB Compass
+- MongoDB installed and running locally + MongoDB Compass would be helpful
 
 ### Steps to Set Up the Project
 1. **Environment Configuration:**
