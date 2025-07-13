@@ -1,6 +1,7 @@
 import { ReservationDto } from '@shared/DTO/reservation.dto';
 import { NextFunction, Router, Request, Response } from 'express';
 import Reservation from '../models/Reservation';
+import { adminMiddleware } from '@middleware/admin-middleware';
 
 // ---------------------------------------------------------------
 
@@ -10,7 +11,7 @@ export class ReservationController {
     constructor() {
         this.reservationRouter = Router();
 
-        this.reservationRouter.get('/', this.getReservations.bind(this));
+        this.reservationRouter.get('/', adminMiddleware, this.getReservations.bind(this));
         this.reservationRouter.get('/dates', this.getReservationDates.bind(this));
         this.reservationRouter.get('/me', this.getMyReservations.bind(this));
         this.reservationRouter.post('/', this.createReservation.bind(this));
@@ -52,9 +53,13 @@ export class ReservationController {
 
     private async createReservation(req: Request, res: Response, next: NextFunction) {
         try {
+            const userId = req.user?.id;
             const reservationData: ReservationDto = req.body;
 
-            const reservation = new Reservation(reservationData);
+            const reservation = new Reservation({
+                user_id: userId,
+                date: reservationData.date,
+            });
             await reservation.save();
 
             res.status(201).json({ message: 'Rezervacija uspješno kreirana', reservation });

@@ -59,4 +59,9 @@ export const endpoints = {
         refreshToken: '/api/refresh-token',
         check: '/api/check',
     },
+    reservations: {
+        all: '/api/reservations',
+        reservationDates: '/api/reservations/dates',
+        myReservations: '/api/reservations/me',
+    },
 };
