@@ -59,7 +59,7 @@ export class AuthService {
         return { user: foundUser, accessToken, refreshToken };
     }
 
-    public async checkIsAuthenticated(userId: number) {
+    public async checkIsAuthenticated(userId: string) {
         const foundUser = await User.findById(userId).populate('role_id');
 
         if (!foundUser) {

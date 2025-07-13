@@ -1,5 +1,6 @@
 import { useAuthContext } from '@hooks/use-auth-context.ts';
-import { Box, List, ListItem, ListItemText } from '@mui/material';
+import { Icon } from '@iconify/react';
+import { Box, Button, Divider, List, ListItem, ListItemText } from '@mui/material';
 import api, { endpoints } from '@utils/axios.ts';
 import { format } from 'date-fns';
 import { Fragment, useEffect, useState } from 'react';
@@ -59,6 +60,11 @@ export default function ReservationList() {
                         <ListItem
                             sx={{
                                 mb: index !== (reservations.length - 1) ? 2 : 1,
+                                display: 'flex',
+                                flexDirection: { xs: 'column', sm: 'row' },
+                                gap: 2,
+                                justifyContent: 'space-between',
+                                alignItems: 'center',
                             }}
                         >
                             <ListItemText
@@ -76,7 +82,15 @@ export default function ReservationList() {
                                     },
                                 }}
                             />
+                            <Button
+                                variant={'contained'}
+                                color={'error'}
+                            >
+                                Ukloni &nbsp;
+                                <Icon icon={'fluent:delete-32-filled'} width={26} />
+                            </Button>
                         </ListItem>
+                        {index !== (reservations.length - 1) && <Divider />}
                     </Fragment>
                 ))}
             </List>

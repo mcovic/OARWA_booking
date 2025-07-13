@@ -1,5 +1,5 @@
 export type JwtAuthenticatedUserDto = {
-    id: number;
+    id: string;
     role_id: number;
 }
 
