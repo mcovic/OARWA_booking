@@ -1,6 +1,6 @@
 import { ENV_CONFIG } from '@config/default';
 import { BadRequestError, NotFoundError, UnauthorizedError, ValidationError } from '@errors/http-error';
-import { LoginCredentialsDto, LoginResponseDto } from '@shared/DTO/auth.dto';
+import { LoginCredentialsDto } from '@shared/DTO/auth.dto';
 import { UserDto } from '@shared/DTO/user.dto';
 import { RoleEnum } from '@shared/enums/RoleEnum';
 import bcrypt from 'bcrypt';
