@@ -3,6 +3,7 @@ import { Button, Stack, Typography } from '@mui/material';
 import { DateTimePicker } from '@mui/x-date-pickers';
 import { paths } from '@routes/paths.ts';
 import api, { endpoints } from '@utils/axios.ts';
+import { useSnackbar } from 'notistack';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 
@@ -23,6 +24,8 @@ export default function ReservationForm() {
     const [ existingReservations, setExistingReservations ] = useState<Date[]>([]);
 
     const { isAuthenticated } = useAuthContext();
+
+    const { enqueueSnackbar } = useSnackbar();
 
     const navigate = useNavigate();
 
@@ -59,9 +62,18 @@ export default function ReservationForm() {
             setDateTime(null);
             await getExistingReservations();
 
+            enqueueSnackbar('Uspješno ste rezervirali termin!', {
+                variant: 'success',
+            });
+
         } catch (error) {
 
+            setDateTime(null);
             console.error('Greška prilikom slanja rezervacije:', error);
+
+            enqueueSnackbar('Greška prilikom rezervacije. Pokušajte ponovno.', {
+                variant: 'error',
+            });
 
         }
     };

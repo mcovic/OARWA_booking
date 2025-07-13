@@ -1,5 +1,6 @@
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { LocalizationProvider } from '@mui/x-date-pickers';
+import { SnackbarProvider } from 'notistack';
 import { BrowserRouter } from 'react-router';
 import { AuthProvider } from './providers/auth-context.tsx';
 import Router from './router.tsx';
@@ -17,7 +18,12 @@ export default function App() {
                 <ThemeProvider theme={customTheme}>
                     <CssBaseline/>
                     <BrowserRouter>
-                        <Router />
+                        <SnackbarProvider anchorOrigin={{
+                            vertical: 'top',
+                            horizontal: 'right',
+                        }}>
+                            <Router />
+                        </SnackbarProvider>
                     </BrowserRouter>
                 </ThemeProvider>
             </AuthProvider>
