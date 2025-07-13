@@ -33,32 +33,34 @@ export class AuthService {
     }
 
     public async login(loginCredentials: LoginCredentialsDto) {
-        const foundUser = await User.findOne({ username: loginCredentials.username });
+        const foundUser = await User.findOne({ username: loginCredentials.username }).populate('role_id');
 
         if (!foundUser) {
             throw new NotFoundError('Neispravno korisničko ime ili lozinka');
         }
 
-        const passwordMatch = await bcrypt.compare(loginCredentials.password, foundUser.password);
+        const passwordMatch = await bcrypt.compare(loginCredentials.password, (foundUser as unknown as UserDto).password);
         if (!passwordMatch) {
             throw new UnauthorizedError('Neispravno korisničko ime ili lozinka');
         }
 
+        const roleId = (foundUser.role_id as any).id;
+
         const accessToken = jwt.sign({
             id: foundUser._id.toString(),
-            role_id: foundUser.role_id,
+            role_id: roleId,
         }, ENV_CONFIG.ACCESS_TOKEN_SECRET, { expiresIn: '15m' });
 
         const refreshToken = jwt.sign({
             id: foundUser._id.toString(),
-            role_id: foundUser.role_id,
+            role_id: roleId,
         }, ENV_CONFIG.REFRESH_TOKEN_SECRET, { expiresIn: '1d' });
 
         return { user: foundUser, accessToken, refreshToken };
     }
 
     public async checkIsAuthenticated(userId: number) {
-        const foundUser = await User.findById(userId);
+        const foundUser = await User.findById(userId).populate('role_id');
 
         if (!foundUser) {
             throw new UnauthorizedError('Korisnik nije prijavljen');

@@ -78,7 +78,7 @@ const NavbarList = ({
 
     const navigate = useNavigate();
 
-    const { isAuthenticated } = useAuthContext();
+    const { isAuthenticated, user } = useAuthContext();
 
     const { pathname } = useLocation();
 

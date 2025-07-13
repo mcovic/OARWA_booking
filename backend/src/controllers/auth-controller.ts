@@ -11,7 +11,7 @@ import { authMiddleware } from '@middleware/auth-middleware';
 export class AuthController {
     private readonly authService;
     public readonly authRouter;
-    private readonly authMiddleware = authMiddleware;
+    private readonly authMiddleware = authMiddleware; //TODO istestirat tokene
 
     constructor() {
         this.authRouter = Router();

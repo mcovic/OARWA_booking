@@ -27,6 +27,13 @@ const userSchema = new Schema({
     },
 }, {
     timestamps: true,
+    toJSON: {
+        transform: function (_: any, ret: Record<string, any>) {
+            delete ret.password;
+
+            return ret;
+        },
+    },
 });
 
 const User = model('User', userSchema);
