@@ -1,8 +1,9 @@
 import { useAuthContext } from '@hooks/use-auth-context.ts';
 import { Icon } from '@iconify/react';
-import { Box, Button, Divider, List, ListItem, ListItemText } from '@mui/material';
+import { Box, Button, Divider, List, ListItem, ListItemText, Typography } from '@mui/material';
 import api, { endpoints } from '@utils/axios.ts';
 import { format } from 'date-fns';
+import { useSnackbar } from 'notistack';
 import { Fragment, useEffect, useState } from 'react';
 import type { ReservationDto } from '../../../../shared/DTO/reservation.dto.ts';
 import { RoleEnum } from '../../../../shared/enums/RoleEnum.ts';
@@ -15,6 +16,8 @@ export default function ReservationList() {
 
     const { user } = useAuthContext();
     const isAdmin = user?.role_id?.id === RoleEnum.ADMIN;
+
+    const { enqueueSnackbar } = useSnackbar();
 
     useEffect(() => {
 
@@ -45,6 +48,41 @@ export default function ReservationList() {
         return `Rezervacija ${index + 1}`;
 
     };
+
+    const handleDelete = async (reservationId: string) => {
+
+        try {
+            await api.delete(endpoints.reservations.single(reservationId));
+
+            setReservations(prev => prev.filter(reservation => reservation._id !== reservationId));
+
+            enqueueSnackbar('Rezervacija uspješno uklonjena', {
+                variant: 'success',
+            });
+        } catch (error) {
+            console.error('Error deleting reservation:', error);
+            enqueueSnackbar('Greška prilikom uklanjanja rezervacije', {
+                variant: 'error',
+            });
+        }
+
+    };
+
+    if (reservations.length === 0) {
+        return (
+            <Box sx={{
+                border: '1px solid white',
+                borderRadius: 2,
+                px: 4,
+                py: { xs: 2, sm: 4 },
+                width: { xs: 300, sm: 550, md: 700, lg: 800 }
+            }}>
+                <Typography variant={'h4'} color={'error.main'}>
+                    {isAdmin ? 'Trenutno nema rezervacija' : 'Nemate rezervacija'}
+                </Typography>
+            </Box>
+        );
+    }
 
     return (
         <Box sx={{
@@ -85,6 +123,7 @@ export default function ReservationList() {
                             <Button
                                 variant={'contained'}
                                 color={'error'}
+                                onClick={() => handleDelete(item._id)}
                             >
                                 Ukloni &nbsp;
                                 <Icon icon={'fluent:delete-32-filled'} width={26} />

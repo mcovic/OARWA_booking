@@ -89,7 +89,7 @@ export class ReservationController {
 
             await Reservation.findByIdAndDelete(reservationId);
 
-            res.status(204);
+            res.status(204).send();
         } catch (error) {
             next(error);
         }
