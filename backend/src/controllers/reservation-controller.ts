@@ -19,7 +19,7 @@ export class ReservationController {
 
     private async getReservations(_: Request, res: Response, next: NextFunction) {
         try {
-            const reservations = await Reservation.find();
+            const reservations = await Reservation.find().populate('user_id');
             res.status(200).json(reservations);
         } catch (error) {
             next(error);

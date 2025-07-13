@@ -26,6 +26,9 @@ export const LandingPage = Loadable(
 export const ReservationPage = Loadable(
     lazy(() => import('@pages/reservation/reservation-page.tsx')),
 );
+export const ReservationListPage = Loadable(
+    lazy(() => import('@pages/reservation-list/reservation-list-page.tsx')),
+);
 
 // ERROR
 export const Page403 = Loadable(lazy(() => import('@pages/error/page-403.tsx')));
